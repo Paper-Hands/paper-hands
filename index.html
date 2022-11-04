@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style/normalize.css" />
-    <link rel="stylesheet" href="./assets/style/style.css" />
+    <link rel="stylesheet" href="./assets/css/normalize.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <script src="https://kit.fontawesome.com/607ad318c3.js" crossorigin="anonymous"></script>
     <title>Paper Hands Stock & Crypto App | Team Paper Hands</title>
 </head>
 <body>
-    <header></header>
-    <main></main>
+    <header class="paper-hands row">Paper Hands</header>
+    <main id="main-content" class="content row">
+        <div id="track-box" class="col s12 l4 tracker"></div>
+        <div id="listed-stock" class="col s12 l8 diplay-stock"></div>
+    </main>
     <footer>
-        <section></section>
+        <section class="newsfeed row"></section>
         <section>&copy;2022. Project Paper Hands. All Rights Reserved.</section>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

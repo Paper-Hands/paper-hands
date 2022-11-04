@@ -1,0 +1,39 @@
+@media only screen and (max-width: 600px) {
+.content {
+    border: solid;
+    height: 3rem;
+}
+.paper-hands {
+    border: solid;
+    height: 3rem;
+}
+.tracker {
+    border: solid;
+    height: 3rem;
+    margin: auto;
+    background-color: green;
+}
+.newsfeed {
+    border: solid;
+    height: 3rem;
+}
+}
+@media only screen and (min-width: 600px) {
+    .content {
+        border: solid;
+        height: 3rem;
+    }
+    .paper-hands {
+        border: solid;
+        height: 3rem;
+    }
+    .newsfeed {
+        border: solid;
+        height: 3rem;
+    }
+    .tracker {
+        border: solid;
+        background-color: green;
+        height: 3rem;
+    }
+}
