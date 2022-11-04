@@ -1,14 +1,13 @@
 const API_KEY = '2RKX3B5PK69BTLCH';
 const baseUrl = 'https://www.alphavantage.co/query?';
 let queryFunction = 'TIME_SERIES_INTRADAY';
-let stockSymbol = 'IBM';
 let interval = '15min';
-console.log(testApiReqUrl);
 
+// console.log(testApiReqUrl);
 
- const getStock = (url, func, sym) => {
-    const testApiReqUrl = `${baseUrl}function=${queryFunction}&symbol=${stockSymbol}&interval=${interval}&apikey=${API_KEY}`;
-
+// interv expects a number
+ const getStock = (url, func, sym, interv) => {
+    const testApiReqUrl = `${url}function=${func}&symbol=${sym}&interval=${interv}min&apikey=${API_KEY}`;
      fetch(testApiReqUrl)
      .then(res => res.json())
      .then(data => console.log(data))
@@ -38,4 +37,5 @@ var oldUrl = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbo
 //     console.log(data);
 // });
 
-getStock('TIME_SERIES_INTRADAY', 'GME');
+// getStock(baseUrl, 'TIME_SERIES_INTRADAY', 'APE');
+getStock(baseUrl, queryFunction, 'APE', 5);
