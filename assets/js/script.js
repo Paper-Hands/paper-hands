@@ -10,11 +10,43 @@ let interval = '15min';
  * @param interval - the time interval between data points. Default value is 5 if not given
 */
  const getStock = (url, func, sym, interv=5) => {
+
     // const testApiReqUrl = `${url}function=${func}&symbol=${sym}&interval=${interv}min&apikey=${API_KEY}`;
-     fetch(`${url}&function=${func}&symbol=${sym}&interval=${interv}min&apikey=${API_KEY}`)
-     .then(res => res.json())
-     .then(data => console.log(data))
+    let responseData = [];
+    let request = fetch(`${url}&function=${func}&symbol=${sym}&interval=${interv}min&apikey=${API_KEY}`)
+    .then(res => res.json())
+    .then(data => data['Meta Data'])
+    .then(data2 => {
+        responseData.push(data2['2. Symbol'])
+    })
+
  }
 
-getStock(baseUrl, queryFunction, 'APE', 5);
+let testStock = getStock(baseUrl, queryFunction, 'IBM', 5);
+console.log(testStock);
+console.log(getStock(baseUrl, queryFunction, 'IBM', 5));
 
+// class StockData {
+//     symbol; // symbol of the stock
+//     timeSeries; // time series 
+//     constructor() {
+
+//     }
+
+//     printData() {
+
+//     }
+// }
+
+// class CryptoData {
+//     symbol; // symbol of cryptocurrency; for example symbol=BTC
+//     timeSeries; // time series; for example timeSeries = CRYPTO_INTRADAY
+//     market; // market to convert crypto to; for example market=USD
+
+//     constructor() {
+
+//     }
+//     printData() {
+
+//     }
+// }
