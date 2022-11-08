@@ -20,35 +20,48 @@
     <main>
         <section class="search-box row">
             <h5 class="search-banner center-align">Search</h5>
-            <input class="user-input center-align col s6" placeholder="enter ticker here"></input>
-            <div class="input-field col s6 interval right-align">
-                <form action="#">
+            
+            <div class="col s6">
+            
+                
+                    <input id="inpt" class="user-input" placeholder="enter ticker here"></input>
+                    <button id="search-btn" class="waves-effect btn" type="button">Search</button>
+                    <div class="right-align input-field col s6 interval">
                     <p>
                         Please select an interval
                     </p>
+
+                    <form action="#">
+                    <!-- one minute interval -->
                     <label>
                         <input name="group1" type="radio" class="1" />
                         <span>1 minute</span>
-                    </label>
+                    </label>    
+                    <!-- five minute interval -->
                     <label>
-                        <input name="group1" type="radio" class="5" />
+                        <input name="group1" type="radio" value="5" />
                         <span>5 minutes</span>
                     </label>
-                    <label>    
-                        <input name="group1" type="radio" class="15" />
-                        <span>15 minutes</span>
+                    <!-- fifteen minute interval -->
+                    <label> 
+                        <input name="group1" type="radio" value="15" />
+                    <span>15 minutes</span>
                     </label>
-                    <label>    
-                        <input name="group1" type="radio" class="30" />
-                        <span>30 minutes</span>
+                    <!-- thirty minute interval -->
+                    <label>   
+                        <input name="group1" type="radio" value="30" />
+                    <span>30 minutes</span>
                     </label>
-                    <label>    
-                        <input name="group1" type="radio" class="hour" />
-                        <span>1 hour</span>
+                    <!-- one hour interval -->
+                    <label> 
+                        <input name="group1" type="radio" value="hour" />
+                    <span>1 hour</span>
                     </label>
-                </form>
+                    </form>  
+                   </div>
                 
-            </div>
+            </div> 
+            
 
         </section>
         <section class="container row">            

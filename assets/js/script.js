@@ -66,3 +66,9 @@ let activeStock = $('#listed-stock');
 
 //     }
 // }
+
+//button test
+﻿
+$('.btn').on('click',function() {
+    console.log("search");
+})

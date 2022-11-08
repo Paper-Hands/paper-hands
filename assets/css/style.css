@@ -16,3 +16,9 @@
 .newsfeed {
     border: solid;
 }
+.btn {
+    border: solid;
+}
+.diplay-stock {
+    text-align: right;
+}
