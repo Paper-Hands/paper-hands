@@ -9,36 +9,68 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <script src="https://kit.fontawesome.com/607ad318c3.js" crossorigin="anonymous"></script>
     <title>Paper Hands Stock & Crypto App | Team Paper Hands</title>
-    <style>
-        .container {width: 1200px; margin: 0 auto;}
-    </style>
+ 
 </head>
 <body>
     <header>
-        <section class="container row">
-            <div class="paper-hands row">Paper Hands</div>
+        <section class="main-banner row">
+            <div class="paper-hands row center-align"><h1>Paper Hands</h1></div>
         </section>
     </header>
     <main>
+        <section class="search-box row">
+            <h5 class="search-banner center-align">Search</h5>
+            <input class="user-input center-align col s6" placeholder="enter ticker here"></input>
+            <div class="input-field col s6 interval right-align">
+                <form action="#">
+                    <p>
+                        Please select an interval
+                    </p>
+                    <label>
+                        <input name="group1" type="radio" class="1" />
+                        <span>1 minute</span>
+                    </label>
+                    <label>
+                        <input name="group1" type="radio" class="5" />
+                        <span>5 minutes</span>
+                    </label>
+                    <label>    
+                        <input name="group1" type="radio" class="15" />
+                        <span>15 minutes</span>
+                    </label>
+                    <label>    
+                        <input name="group1" type="radio" class="30" />
+                        <span>30 minutes</span>
+                    </label>
+                    <label>    
+                        <input name="group1" type="radio" class="hour" />
+                        <span>1 hour</span>
+                    </label>
+                </form>
+                
+            </div>
+
+        </section>
         <section class="container row">            
         <div class="col s12 l4 tracker">
-            <div id="track-box">Search Box <!-- input / form --></div>
-            <div id="hot-list">
-                <ul>
+            <div id="track-box">Tracked Stocks <!-- input / form --></div>
+            <div class="hot-list">
+                <ul id="stocklist-root">
                     <li>AMC</li>
                     <li>IBM</li>
                     <li>AMZ</li>
                 </ul>
             </div>
         </div>
-        <div id="listed-stock" class="col s12 l8 diplay-stock"></div>
+        <div class="col s12 l8 diplay-stock"></div>
         </section>
     </main>
     <footer>
-        <section class="container">
+        <section class="bottom">
             <div class="newsfeed"></div>
-        </section>
+        
         <section>&copy;2022. Project Paper Hands. All Rights Reserved.</section>
+        </section>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
