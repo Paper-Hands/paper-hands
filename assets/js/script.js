@@ -2,7 +2,7 @@ const API_KEY = '2RKX3B5PK69BTLCH';
 const baseUrl = 'https://www.alphavantage.co/query?';
 let queryFunction = 'TIME_SERIES_INTRADAY';
 let interval = '15min';
-let activeStock = $('#listed-stock');
+let activeStock = $('.display-stock');
 
 /** 
  * Makes a fetch request and returns the stock data with the specified parameters in JSON
