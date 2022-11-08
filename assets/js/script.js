@@ -2,6 +2,7 @@ const API_KEY = '2RKX3B5PK69BTLCH';
 const baseUrl = 'https://www.alphavantage.co/query?';
 let queryFunction = 'TIME_SERIES_INTRADAY';
 let interval = '15min';
+let activeStock = $('#listed-stock');
 
 /** 
  * Makes a fetch request and returns the stock data with the specified parameters in JSON
@@ -13,18 +14,33 @@ let interval = '15min';
 
     // const testApiReqUrl = `${url}function=${func}&symbol=${sym}&interval=${interv}min&apikey=${API_KEY}`;
     let responseData = [];
-    let request = fetch(`${url}&function=${func}&symbol=${sym}&interval=${interv}min&apikey=${API_KEY}`)
-    .then(res => res.json())
-    .then(data => data['Meta Data'])
-    .then(data2 => {
-        responseData.push(data2['2. Symbol'])
+    let request = `${url}function=${func}&symbol=${sym}&interval=${interv}min&apikey=${API_KEY}`;
+
+
+    console.log(request);
+
+    fetch(request)
+      .then(function (response) {
+        return response.json();
+      })
+    .then(function(data){
+        let symbol = data['Meta Data']['2. Symbol'];
+        var lastRefreshed = data['Meta Data']['3. Last Refreshed'];
+        var lastTradePriceOnly = data['Time Series (5min)'][lastRefreshed]['4. close'];
+        var lastVolume = data['Time Series (5min)'][lastRefreshed]['5. volume'];
+
+    console.log(symbol + ', ' + lastRefreshed + ', ' + lastTradePriceOnly + ', ' + lastVolume);
+    activeStock.html(symbol + ', ' + lastRefreshed + ', ' + lastTradePriceOnly + ', ' + lastVolume);
     })
+    return;
+}
+ 
 
- }
+ //function() {}
 
-let testStock = getStock(baseUrl, queryFunction, 'IBM', 5);
-console.log(testStock);
-console.log(getStock(baseUrl, queryFunction, 'IBM', 5));
+//let testStock = getStock(baseUrl, queryFunction, 'IBM', 5);
+//console.log(testStock);
+//console.log(getStock(baseUrl, queryFunction, 'IBM', 5));
 
 // class StockData {
 //     symbol; // symbol of the stock
