@@ -11,39 +11,46 @@ let searchField = $('.user-input');
  * @param func - The time series to use
  * @param interval - the time interval between data points. Default value is 5 if not given
 */
- function getStock(url, func, sym, interv=5) {
+function getStock(url, func, sym, interv = 5) {
 
-    // const testApiReqUrl = `${url}function=${func}&symbol=${sym}&interval=${interv}min&apikey=${API_KEY}`;
-    let responseData = [];
-    let request = `${url}function=${func}&symbol=${sym}&interval=${interv}min&apikey=${API_KEY}`;
-    let res = [];
+  // const testApiReqUrl = `${url}function=${func}&symbol=${sym}&interval=${interv}min&apikey=${API_KEY}`;
+  // let responseData = [];
+  let request = `${url}function=${func}&symbol=${sym}&interval=${interv}min&apikey=${API_KEY}`; // request url
+  console.log(request); // log out the request url
 
-    console.log(request);
+  // send get request to the request url
+  fetch(request)
+    .then(function (response) {
+      return response.json(); // returns the response data in json format
+    })
+    .then(function (data) {
+      console.log(data);
 
-    fetch(request)
-      .then(function (response) {
-        return response.json();
-      })
-    .then(function(data){
-        console.log(data);
-        let symbol = data['Meta Data']['2. Symbol'];
-        var lastRefreshed = data['Meta Data']['3. Last Refreshed'];
-        var lastTradePriceOnly = data['Time Series (5min)'][lastRefreshed]['4. close'];
-        var lastVolume = data['Time Series (5min)'][lastRefreshed]['5. volume'];
-        
-     console.log(symbol + ', ' + lastRefreshed + ', ' + lastTradePriceOnly + ', ' + lastVolume);
-    console.log(activeStock)
-    let temp = `${symbol}, ${lastRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`
-    console.log(temp)
-    // activeStock.appendChild(temp)
-    activeStock.textContent = temp
+      let symbol = data['Meta Data']['2. Symbol'];
+      var lastRefreshed = data['Meta Data']['3. Last Refreshed'];
+      var lastTradePriceOnly = data['Time Series (5min)'][lastRefreshed]['4. close'];
+      var lastVolume = data['Time Series (5min)'][lastRefreshed]['5. volume'];
+
+      // console.log(symbol + ', ' + lastRefreshed + ', ' + lastTradePriceOnly + ', ' + lastVolume);
+      console.log(activeStock)
+      let temp = `${symbol}, ${lastRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`
+      console.log(temp)
+      // activeStock.appendChild(temp)
+      activeStock.textContent = temp
     })
 }
 // Capture user input from input forms 
 const getUserInput = () => {
+  
+}
+
+
+// event handler for search button
+const searchButtonHandler = (e) => {
+
 
 }
- 
+
 console.log(`STOCK DATA : ${getStock(baseUrl, queryFunction, 'IBM', 5)}`);
 
  //function() {}
