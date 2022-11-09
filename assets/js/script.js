@@ -76,3 +76,9 @@ console.log(`STOCK DATA : ${getStock(baseUrl, queryFunction, 'IBM', 5)}`);
 
 //     }
 // }
+
+//button test
+﻿
+$('.btn').on('click',function() {
+    console.log("search");
+})
