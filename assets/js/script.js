@@ -37,8 +37,8 @@ function getStock(url, func, sym, interv = 5) {
 }
 // Capture user input from input forms 
 const getUserInput = () => {
-  const radioButtons = $('input[name="group1"]');
-  console.log($("input[type='radio'][name='group1']:checked").val());
+  let select = $('#int option:selected').val();
+  console.log(select);
   let symbol = searchField.val();
   let interval;
   console.log(`SYM: ${symbol}`);
@@ -56,6 +56,6 @@ console.log(`STOCK DATA : ${getStock(baseUrl, queryFunction, 'IBM', 5)}`);
 
 //button test
 ﻿
-$('.btn').on('click',function() {
+$('.search-btn').on('click',function() {
     console.log("search");
 })
