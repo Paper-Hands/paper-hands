@@ -22,3 +22,6 @@
 .diplay-stock {
     text-align: right;
 }
+#int {
+    display: flex;
+}
