@@ -39,7 +39,7 @@ function getStock(url, func, sym, interv = 5) {
       displayTickerEl.text(symbol);
       console.log(activeStock)
       dateEl.text(dateRefreshed);
-      lastTradeEl.text("Last Trade Price(usd): $"+parseInt(lastTradePriceOnly).toFixed(2));
+      lastTradeEl.text("Last Trade Price(usd): $" + parseInt(lastTradePriceOnly).toFixed(2));
       sharesTradedEl.text("Trade volume (# of trades made): " + lastVolume);
       let temp = `${symbol}, ${dateRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`
       console.log(temp)
@@ -53,6 +53,7 @@ const getUserInput = () => {
   let symbol = searchField.val();
   let interval;
   console.log(`SYM: ${symbol}`);
+  getStock(baseUrl, queryFunction, symbol, select)
 
 }
 
@@ -66,7 +67,7 @@ searchButton.on('click', searchButtonHandler);
 console.log(`STOCK DATA : ${getStock(baseUrl, queryFunction, 'IBM', 5)}`);
 
 //button test
-﻿
-$('.search-btn').on('click',function() {
-    console.log("search");
+
+$('.search-btn').on('click', function () {
+  console.log("search");
 })
