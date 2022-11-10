@@ -1,3 +1,18 @@
+.p-2{
+    padding: 0 .5em;
+} 
+.nav-container{
+    width: 900px;
+}
+.row{
+    display: flex; 
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.col-3{
+    flex-basis: 25%;
+}
 .content {
     border: solid;
 }
@@ -16,9 +31,9 @@
 .newsfeed {
     border: solid;
 }
-.btn {
-    border: solid;
-}
 .diplay-stock {
     text-align: right;
+}
+#int {
+    display: flex;
 }

@@ -15,8 +15,16 @@ let searchField = $('.user-input');
 var activeStock = document.getElementById('display-stock')
 const searchField = $('#search-bar');
 const searchButton = $('#search-btn');
+<<<<<<< HEAD
 
 >>>>>>> 86501c7c20cf8c84f3208f552de6402056179638
+=======
+const selectField = $('#int option:selected');
+var dateEl = $('#date-refreshed');
+var displayTickerEl = $('#display-ticker');
+var lastTradeEl = $('#last-trade');
+var sharesTradedEl = $('#shares-traded');
+>>>>>>> d1118a5cb8641e043f9223d3b53a43034e278765
 /** 
  * Makes a fetch request and returns the stock data with the specified parameters in JSON
  * @param url - The url to send the web request to
@@ -39,20 +47,28 @@ function getStock(url, func, sym, interv = 5) {
       var lastRefreshed = data['Meta Data']['3. Last Refreshed'];
       var lastTradePriceOnly = data['Time Series (5min)'][lastRefreshed]['4. close'];
       var lastVolume = data['Time Series (5min)'][lastRefreshed]['5. volume'];
-
+      /////////////////////////
+      lastRefreshed = lastRefreshed.split(' ');
+      var date = lastRefreshed[0].split('-');
+      var dateRefreshed = `${date[1]}/${date[2]}/${date[0]}`;
+      displayTickerEl.text(symbol);
       console.log(activeStock)
-      let temp = `${symbol}, ${lastRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`
+      dateEl.text(dateRefreshed);
+      lastTradeEl.text("Last Trade Price(usd): $" + parseInt(lastTradePriceOnly).toFixed(2));
+      sharesTradedEl.text("Trade volume (# of trades made): " + lastVolume);
+      let temp = `${symbol}, ${dateRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`
       console.log(temp)
       activeStock.textContent = temp
     })
 }
 // Capture user input from input forms 
 const getUserInput = () => {
-  const radioButtons = $('input[name="group1"]');
-  console.log($("input[type='radio'][name='group1']:checked").val());
+  var select = $('#int option:selected').val();
+  console.log(select);
   let symbol = searchField.val();
   let interval;
   console.log(`SYM: ${symbol}`);
+  getStock(baseUrl, queryFunction, symbol, select)
 
 }
 
@@ -66,7 +82,7 @@ searchButton.on('click', searchButtonHandler);
 console.log(`STOCK DATA : ${getStock(baseUrl, queryFunction, 'IBM', 5)}`);
 
 //button test
-﻿
-$('.btn').on('click',function() {
-    console.log("search");
+
+$('.search-btn').on('click', function () {
+  console.log("search");
 })

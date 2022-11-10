@@ -1,25 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/normalize.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <script src="https://kit.fontawesome.com/607ad318c3.js" crossorigin="anonymous"></script>
     <title>Paper Hands Stock & Crypto App | Team Paper Hands</title>
- 
+
 </head>
+
 <body>
     <header>
+        <nav>
+            <div id="navbar" class="nav-wrapper navbar blue darken-4">
+
+                <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Paper Hands</a>
+                <ul class="right hide-on-med-and-down">
+                    <div class="nav-container">
+                        <div class="row">
+                            <div class="col-3 p-2">
+                                <input id="search-bar" class="user-input" placeholder="enter ticker here"></input>
+
+                                <div class="input-field col s6 s12 red-text">
+
+                                </div>
+                            </div>
+                                <div class="col-3 p-2">
+                                    <div id="selector">
+                                        <select name="interval" id="int">
+                                            <option value="" disabled selected>Select an interval</option>
+                                            <option value="1">1 minute</option>
+                                            <option value="5">5 minutes</option>
+                                            <option value="15">15 minutes</option>
+                                            <option value="30">30 minutes</option>
+                                            <option value="60">1 hour</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-3 p-2">
+                                    <button id="search-btn" class="search-btn" type="button">Search</button>
+                                </div>
+                                <div class="col-3 p-2"> </div>
+
+
+
+                            
+
+
+                        </div>
+                    </div>
+                </ul>
+
+            </div>
+        </nav>
         <section class="main-banner row">
-            <div class="paper-hands row center-align"><h1>Paper Hands</h1></div>
+            <div class="paper-hands row center-align">
+                <h1>Paper Hands</h1>
+            </div>
         </section>
+
     </header>
     <main>
         <section class="search-box row">
             <h5 class="search-banner center-align">Search</h5>
+<<<<<<< HEAD
 <<<<<<< HEAD
             <div class="input-field col s6 interval right-align">
                 <form action="#">
@@ -36,59 +84,59 @@
                     <p>
                         Please select an interval
                     </p>
+=======
 
-                    <form action="#">
-                    <!-- one minute interval -->
-                    <label>
-                        <input name="group1" type="radio" value="1" />
-                        <span>1 minute</span>
-                    </label>    
-                    <!-- five minute interval -->
-                    <label>
-                        <input name="group1" type="radio" value="5" />
-                        <span>5 minutes</span>
-                    </label>
-                    <!-- fifteen minute interval -->
-                    <label> 
-                        <input name="group1" type="radio" value="15" />
-                    <span>15 minutes</span>
-                    </label>
-                    <!-- thirty minute interval -->
-                    <label>   
-                        <input name="group1" type="radio" value="30" />
-                    <span>30 minutes</span>
-                    </label>
-                    <!-- one hour interval -->
-                    <label> 
-                        <input name="group1" type="radio" value="hour" />
-                    <span>1 hour</span>
-                    </label>
-                    </form>  
-                   </div>
-                
-                
-            </div> 
-            
+            <div class="col s6">
+>>>>>>> d1118a5cb8641e043f9223d3b53a43034e278765
 
-        </section>
-        <section class="container row">            
-        <div class="col s12 l4 tracker">
-            <div id="track-box">Tracked Stocks <!-- input / form --></div>
-            <div class="hot-list">
-                <ul id="stocklist-root">
-                    <li>AMC</li>
-                    <li>IBM</li>
-                    <li>AMZ</li>
-                </ul>
             </div>
-        </div>
-        <div id='display-stock' class="col s12 l8 diplay-stock"></div>
+        </section>
+    </main>
+    <main>
+        <section class="container row">
+            <div class="col s12 l4 tracker">
+                <div id="track-box">Tracked Stocks
+                    <!-- input / form -->
+                </div>
+                <div class="hot-list">
+                    <ul id="stocklist-root">
+                        <li>AMC</li>
+                        <li>IBM</li>
+                        <li>AMZ</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- <div id='display-stock' class="col s12 l8 diplay-stock"></div> -->
+            <div class="col s12 m7">
+                <h2 class="header" id="display-ticker"></h2>
+                <div class="card horizontal">
+                    <!-- <div class="card-image">
+                <img src="https://lorempixel.com/100/190/nature/6">
+              </div> -->
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <div class="date" id="date-refreshed"></div>
+                            <div class="time" id="time-refreshed"></div>
+                            <div class="traded-shares" id="shares-traded"></div>
+                            <div class="last-trade" id="last-trade"></div>
+                        </div>
+                        <div class="card-action">
+                            <button id="save" type="button">Save</button>
+                            <button id="remove" type="button">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <footer>
         <section class="bottom">
             <div class="newsfeed"></div>
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> d1118a5cb8641e043f9223d3b53a43034e278765
             <section>&copy;2022. Project Paper Hands. All Rights Reserved.</section>
         </section>
     </footer>
@@ -96,4 +144,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
