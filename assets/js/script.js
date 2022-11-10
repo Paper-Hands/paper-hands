@@ -2,29 +2,14 @@ const API_KEY = '2RKX3B5PK69BTLCH';
 const baseUrl = 'https://www.alphavantage.co/query?';
 let queryFunction = 'TIME_SERIES_INTRADAY';
 let interval = '15min';
-<<<<<<< HEAD
-<<<<<<< HEAD
-let activeStock = $('.display-stock');
-
-=======
-// var activeStock = $('.display-stock');
-var activeStock = document.getElementById('display-stock')
-let searchField = $('.user-input');
->>>>>>> 81f797cfa9356ebc8e43749b800c88892160eb70
-=======
-var activeStock = document.getElementById('display-stock')
+//var activeStock = document.getElementById('display-stock') threw errors lines 40, 46
 const searchField = $('#search-bar');
 const searchButton = $('#search-btn');
-<<<<<<< HEAD
-
->>>>>>> 86501c7c20cf8c84f3208f552de6402056179638
-=======
 const selectField = $('#int option:selected');
 var dateEl = $('#date-refreshed');
 var displayTickerEl = $('#display-ticker');
 var lastTradeEl = $('#last-trade');
 var sharesTradedEl = $('#shares-traded');
->>>>>>> d1118a5cb8641e043f9223d3b53a43034e278765
 /** 
  * Makes a fetch request and returns the stock data with the specified parameters in JSON
  * @param url - The url to send the web request to
@@ -45,20 +30,20 @@ function getStock(url, func, sym, interv = 5) {
 
       let symbol = data['Meta Data']['2. Symbol'];
       var lastRefreshed = data['Meta Data']['3. Last Refreshed'];
-      var lastTradePriceOnly = data['Time Series (5min)'][lastRefreshed]['4. close'];
+      var lastTradePriceOnly = data['Time Series (5min)'][lastRefreshed]['4. close']; // causes error
       var lastVolume = data['Time Series (5min)'][lastRefreshed]['5. volume'];
       /////////////////////////
       lastRefreshed = lastRefreshed.split(' ');
       var date = lastRefreshed[0].split('-');
       var dateRefreshed = `${date[1]}/${date[2]}/${date[0]}`;
       displayTickerEl.text(symbol);
-      console.log(activeStock)
+      //console.log(activeStock)
       dateEl.text(dateRefreshed);
       lastTradeEl.text("Last Trade Price(usd): $" + parseInt(lastTradePriceOnly).toFixed(2));
       sharesTradedEl.text("Trade volume (# of trades made): " + lastVolume);
       let temp = `${symbol}, ${dateRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`
       console.log(temp)
-      activeStock.textContent = temp
+      //activeStock.textContent = temp
     })
 }
 // Capture user input from input forms 
@@ -74,15 +59,16 @@ const getUserInput = () => {
 
 // event handler for search button
 const searchButtonHandler = (e) => {
+  e.preventDefault(); // keeps page from refreshing on click
+
   getUserInput();
 }
 
 searchButton.on('click', searchButtonHandler);
 
-console.log(`STOCK DATA : ${getStock(baseUrl, queryFunction, 'IBM', 5)}`);
+//console.log(`STOCK DATA : ${getStock(baseUrl, queryFunction, 'IBM', 5)}`);
 
 //button test
-
-$('.search-btn').on('click', function () {
-  console.log("search");
-})
+// $('.search-btn').on('click', function () {
+//   console.log("search");
+// })

@@ -8,113 +8,87 @@
     <link rel="stylesheet" href="./assets/css/normalize.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <script src="https://kit.fontawesome.com/607ad318c3.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Paper Hands Stock & Crypto App | Team Paper Hands</title>
 
 </head>
 
 <body>
     <header>
-        <nav>
-            <div id="navbar" class="nav-wrapper navbar blue darken-4">
-
-                <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Paper Hands</a>
-                <ul class="right hide-on-med-and-down">
-                    <div class="nav-container">
-                        <div class="row">
-                            <div class="col-3 p-2">
-                                <input id="search-bar" class="user-input" placeholder="enter ticker here"></input>
-
-                                <div class="input-field col s6 s12 red-text">
-
-                                </div>
-                            </div>
-                                <div class="col-3 p-2">
-                                    <div id="selector">
-                                        <select name="interval" id="int">
-                                            <option value="" disabled selected>Select an interval</option>
-                                            <option value="1">1 minute</option>
-                                            <option value="5">5 minutes</option>
-                                            <option value="15">15 minutes</option>
-                                            <option value="30">30 minutes</option>
-                                            <option value="60">1 hour</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-3 p-2">
-                                    <button id="search-btn" class="search-btn" type="button">Search</button>
-                                </div>
-                                <div class="col-3 p-2"> </div>
-
-
-
-                            
-
-
-                        </div>
-                    </div>
-                </ul>
-
-            </div>
-        </nav>
-        <section class="main-banner row">
-            <div class="paper-hands row center-align">
-                <h1>Paper Hands</h1>
-            </div>
-        </section>
-
-    </header>
-    <main>
-        <section class="search-box row">
-            <h5 class="search-banner center-align">Search</h5>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <div class="input-field col s6 interval right-align">
-                <form action="#">
-                    <input class="user-input center-align col s6" placeholder="enter ticker here"></input>
-=======
-            
-            <div class="col s6">
-            
-                
-                    <input id="search-bar" class="user-input" placeholder="enter ticker here"></input>
-                    <button id="search-btn" class="waves-effect btn" type="button">Search</button>
-                    <div class="right-align input-field col s6 interval">
->>>>>>> 86501c7c20cf8c84f3208f552de6402056179638
-                    <p>
-                        Please select an interval
-                    </p>
-=======
-
-            <div class="col s6">
->>>>>>> d1118a5cb8641e043f9223d3b53a43034e278765
-
-            </div>
-        </section>
-    </main>
-    <main>
-        <section class="container row">
-            <div class="col s12 l4 tracker">
-                <div id="track-box">Tracked Stocks
-                    <!-- input / form -->
+        <nav id="navbar" class="navbar blue darken-4">
+            <div class="container row">
+                <div class="col s6 m6 l4 flex">
+                    <a href="#!" class="brand-logo logo"><i class="large material-icons">cloud</i>Paper Hands</a>
                 </div>
-                <div class="hot-list">
+                <div class="col l4 flex hide-on-med-and-down">
+                    <ul>
+                        <!-- menu links -->
+                        <li><span id="crypto-link">Crypto Currencies</span></li>
+                        <li class="active"><span id="stock-link">Stock Tracker</span></li>
+                    </ul> <!-- end menu links -->
+                    <!-- mobile menu -->
+                    <ul id="nav-mobile" class="sidenav">
+                        <!-- menu links -->
+                        <li>Crypto Currencies</li>
+                        <li>Stock Tracker</li>
+                    </ul> <!-- end menu links -->
+                    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                </div>
+                <div class="col s12 l4 center time-date">
+                    <span>9:00 AM ET</span>
+                    <span>NOV 10, 2022</span>
+                </div>
+                <!-- end mobile menu -->
+            </div>
+        </nav>        
+        <section class="container page-title">
+            <h1>Stock Tracker</h1>
+        </section>
+    </header>
+    <!-- add container class to give width and center -->
+    <section class="container section main-content">
+        <!-- add row class to create columns -->
+        <div class="row">
+            <aside class="col s3 card">
+                <h5 class="search-banner center-align">Search</h5>
+                <!-- must have a form tag for search to work -->
+                <form class="search-form">
+                    <!-- input field, no closing tag needed-->
+                    <input id="search-bar" class="user-input" placeholder="enter ticker here">
+                    <!-- not sure why this is here -->
+                    <div class="input-field red-text"></div>
+                    <!-- drop down box -->
+                    <select name="interval" id="int" class="options">
+                        <option value="" disabled selected>Select an interval</option>
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="15">15 minutes</option>
+                        <option value="30">30 minutes</option>
+                        <option value="60">1 hour</option>
+                    </select>
+                    <button id="search-btn" class="search-btn" type="submit">Search</button>
+                </form>
+                <div id="track-box" class="section">
+                    <h5>Previous Searches</h5>
+                    <!-- should link to local storage -->
+                </div>
+                <div class="section hot-list">
+                    <h5>Trending</h5>
                     <ul id="stocklist-root">
                         <li>AMC</li>
                         <li>IBM</li>
                         <li>AMZ</li>
                     </ul>
                 </div>
-            </div>
-            <!-- <div id='display-stock' class="col s12 l8 diplay-stock"></div> -->
-            <div class="col s12 m7">
-                <h2 class="header" id="display-ticker"></h2>
+            </aside>
+            <!-- only one main element needed per page -->
+            <main class="col s9">
                 <div class="card horizontal">
-                    <!-- <div class="card-image">
-                <img src="https://lorempixel.com/100/190/nature/6">
-              </div> -->
                     <div class="card-stacked">
                         <div class="card-content">
+                            <!-- stock name and ticker symbol generated from script -->
+                            <h2 id="display-ticker" class="header"></h2>
+                            <!-- stock data from script -->
                             <div class="date" id="date-refreshed"></div>
                             <div class="time" id="time-refreshed"></div>
                             <div class="traded-shares" id="shares-traded"></div>
@@ -126,19 +100,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <section class="bottom">
-            <div class="newsfeed"></div>
-<<<<<<< HEAD
-        
-=======
+            </main>
+        </div>
+    </section>
+    <section class="container center">
+        <!-- what are we doing here? -->
+        <div class="newsfeed"></div>
 
->>>>>>> d1118a5cb8641e043f9223d3b53a43034e278765
-            <section>&copy;2022. Project Paper Hands. All Rights Reserved.</section>
-        </section>
+    </section>
+    <footer class="container center">
+        <p>&copy;2022. Project Paper Hands. All Rights Reserved.</p>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
