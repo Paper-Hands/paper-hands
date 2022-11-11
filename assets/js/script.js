@@ -8,6 +8,8 @@ var dateEl = $('#date-refreshed');
 var displayTickerEl = $('#display-ticker');
 var lastTradeEl = $('#last-trade');
 var sharesTradedEl = $('#shares-traded');
+const companyName = $('#company-name');
+
 
 /** 
  * Makes a fetch request and returns the stock data with the specified parameters in JSON
@@ -36,6 +38,7 @@ function getStock(url, func, sym, interv = 5) {
       lastRefreshed = lastRefreshed.split(' ');
       var date = lastRefreshed[0].split('-');
       var dateRefreshed = `${date[1]}/${date[2]}/${date[0]}`;
+
       displayTickerEl.text(symbol);
       dateEl.text(dateRefreshed);
       lastTradeEl.text("Last Trade Price(usd): $" + parseInt(lastTradePriceOnly).toFixed(2));
@@ -46,7 +49,7 @@ function getStock(url, func, sym, interv = 5) {
 }
 // Capture user input from input forms 
 const getUserInput = () => {
-  var select = $('#int option:selected').val();
+  var select = $('#int option:selected').val(); // interval dropdown menu value
   console.log(select);
   let symbol = searchField.val();
   console.log(`SYM: ${symbol}`);
