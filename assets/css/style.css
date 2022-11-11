@@ -1,3 +1,128 @@
+/* element styles */
+html,body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+aside, main {
+    flex-grow: 1;
+}
+
+aside {
+    border: 1px solid #bbb;
+}
+
+/* object-oriented classes */
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.header {
+    margin-top: 0;
+}
+
+.logo {
+    padding: 7px 0 !important;
+    position: relative !important;
+}
+
+.main-content {
+    min-height: 83vh;
+    padding-top: 1rem;
+    width: 60%;
+}
+
+.navbar {
+    height: auto;
+    line-height: normal;
+}
+
+.navbar .row {
+    margin-bottom: 0;
+}
+
+.navbar ul {
+    flex: 1;
+}
+
+.navbar ul li {
+    background-color: #45679c;
+    width: 50%;
+}
+
+.navbar ul li.active {
+    background-color: #45679c;
+    -webkit-box-shadow: 0 0 40px 0 rgba(0,0,0,0.5) inset;
+    -moz-box-shadow: 0 0 40px 0 rgba(0,0,0,0.5) inset;
+    box-shadow: 0 0 40px 0 rgba(0,0,0,0.5) inset;
+}
+
+.navbar ul li span {
+    cursor: pointer;
+    display: inline-block;
+    padding: 25px 20px;
+}
+
+.options {
+    display: block;
+}
+
+.page-title {
+    width: 60%;
+}
+
+.search-btn {
+    background-color: #0D47A1;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+.search-btn:hover {    
+    background-color: #45679c;
+}
+
+.time-date {
+    padding: 10px 0 !important;
+}
+
+.time-date span {
+    display: block;
+    padding-bottom: 5px;
+}
+
+.user-input {
+    padding-left: 10px !important;
+}
+
+
+
+/*
+.p-2{
+    padding: 0 .5em;
+} 
+.nav-container{
+    width: 900px;
+}
+.row{
+    display: flex; 
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.col-3{
+    flex-basis: 25%;
+}
 .content {
     border: solid;
 }
@@ -15,13 +140,22 @@
 }
 .newsfeed {
     border: solid;
-}
-.btn {
-    border: solid;
-}
+}*/
+
 .diplay-stock {
     text-align: right;
 }
 #int {
     display: flex;
+}
+
+.section.no-pad-bot {    
+    min-height: 83vh;
+}
+
+/* media queries */
+@media screen and (max-width: 375px) {
+}
+
+@media screen and (min-width: 376px) and (max-width: 1119px) {
 }
