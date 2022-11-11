@@ -10,6 +10,7 @@ var lastTradeEl = $('#last-trade');
 var sharesTradedEl = $('#shares-traded');
 var saveBtn = $('#save');
 var count = 0;
+var removeBtn = $('#remove');
 
 var newYork = moment.tz("America/New_York").format('lll');
 console.log(newYork);
@@ -50,9 +51,6 @@ function getStock(url, func, sym, interv = 5) {
       let temp = `${symbol}, ${dateRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`
       console.log(temp);
     })
-    //this function displays the user's saved stocks
-    storeStocks();
-
 }
 // Capture user input from input forms 
 const getUserInput = () => {
@@ -74,7 +72,7 @@ const searchButtonHandler = (e) => {
 searchButton.on('click', searchButtonHandler);
 
 saveBtn.on('click', function () {
-  
+  storeStocks();
   savedStocks();
 })
 
@@ -111,4 +109,19 @@ $('.local-links').on('click', function() {
   var saveButton = $(this).text();
   console.log(saveButton);
   getStock(baseUrl, queryFunction, saveButton, 5);
+})
+
+
+removeBtn.on('click', function() {
+  var removeButton = displayTickerEl.text();
+  //if local storage contains value xyz, then get key name, then localStorage.removeItem(key)
+  //pull all values from local storage, then compare the values with the 
+  var myArray = []
+  for ( var i = 1; i <= localStorage.length; i++ ) {
+    console.log( localStorage.getItem( localStorage.key("entry-" + i ) ) );
+    var array = localStorage.getItem(localStorage.key("entry-" + i));
+    myArray.push(array);
+    console.log(myArray);
+  }
+  
 })
