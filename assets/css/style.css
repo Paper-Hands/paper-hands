@@ -27,6 +27,13 @@ aside {
     margin-top: 0;
 }
 
+.local-links {
+    display: block;
+    cursor: pointer;
+    text-decoration: underline;
+    color: red;
+}
+
 .logo {
     padding: 7px 0 !important;
     position: relative !important;

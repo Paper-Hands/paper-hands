@@ -8,6 +8,8 @@ var dateEl = $('#date-refreshed');
 var displayTickerEl = $('#display-ticker');
 var lastTradeEl = $('#last-trade');
 var sharesTradedEl = $('#shares-traded');
+var saveBtn = $('#save');
+var count = 0;
 
 /** 
  * Makes a fetch request and returns the stock data with the specified parameters in JSON
@@ -41,8 +43,11 @@ function getStock(url, func, sym, interv = 5) {
       lastTradeEl.text("Last Trade Price(usd): $" + parseInt(lastTradePriceOnly).toFixed(2));
       sharesTradedEl.text("Trade volume (# of trades made): " + lastVolume);
       let temp = `${symbol}, ${dateRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`
-      console.log(temp)
+      console.log(temp);
     })
+    //this function displays the user's saved stocks
+    storeStocks();
+
 }
 // Capture user input from input forms 
 const getUserInput = () => {
@@ -63,9 +68,42 @@ const searchButtonHandler = (e) => {
 
 searchButton.on('click', searchButtonHandler);
 
+saveBtn.on('click', function () {
+  
+  savedStocks();
+})
+
+function savedStocks() {
+  var windowLoc = window.localStorage;
+  var outPut = "";
+  if (windowLoc.length > 0) {
+    for (i = 1; i <= windowLoc.length; i++) {
+      var getSaved = "entry-" + i;
+      var localStock = localStorage.getItem(getSaved);
+      outPut += "<span class='local-links'>" + localStock + "</span>";
+    }
+    $('#stored-stocks').html(outPut);
+    $('.searches').removeClass('hidden');
+  }
+
+}
+
+function storeStocks() {
+  let sym = searchField.val();
+  if (sym !== "") {
+    count += 1;
+    var saved = "entry-" + count;
+    localStorage.setItem(saved, sym);
+  }
+}
 //console.log(`STOCK DATA : ${getStock(baseUrl, queryFunction, 'IBM', 5)}`);
 
 //button test
-// $('.search-btn').on('click', function () {
-//   console.log("search");
-// })
+
+//runs savedStocks function to check local storage on window refresh
+savedStocks(); 
+$('.local-links').on('click', function() {
+  var saveButton = $(this).text();
+  console.log(saveButton);
+  getStock(baseUrl, queryFunction, saveButton, 5);
+})
