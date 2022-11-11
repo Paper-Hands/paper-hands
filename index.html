@@ -16,31 +16,33 @@
 <body>
     <header>
         <nav id="navbar" class="navbar blue darken-4">
-            <div class="container row">
-                <div class="col s6 m6 l4 flex">
+            <div class="container row flex">
+                <div class="col s6 m6 l4 left">
                     <a href="#!" class="brand-logo logo"><i class="large material-icons">cloud</i>Paper Hands</a>
                 </div>
-                <div class="col l4 flex hide-on-med-and-down">
+                <div class="col s12 m6 l4 hide-on-med-and-down">
                     <ul>
                         <!-- menu links -->
                         <li><span id="crypto-link">Crypto Currencies</span></li>
                         <li class="active"><span id="stock-link">Stock Tracker</span></li>
                     </ul> <!-- end menu links -->
-                    <!-- mobile menu -->
-                    <ul id="nav-mobile" class="sidenav">
-                        <!-- menu links -->
-                        <li>Crypto Currencies</li>
-                        <li>Stock Tracker</li>
-                    </ul> <!-- end menu links -->
+                </div>
+                <!-- mobile menu -->
+                <ul id="nav-mobile" class="sidenav">
+                    <!-- menu links -->
+                    <li>Crypto Currencies</li>
+                    <li>Stock Tracker</li>
+                </ul> <!-- end menu links -->
+                <div class="col s6 m6 l4 right hide">
                     <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 </div>
-                <div class="col s12 l4 center time-date">
-                    <span class="time"></span>
+                <div class="col s12 m4 l4 center time-date">
+                    <span class="nav-time"></span>
                     <span class="date"></span>
                 </div>
                 <!-- end mobile menu -->
             </div>
-        </nav>        
+        </nav>
         <section class="container page-title">
             <h1>Stock Tracker</h1>
         </section>
@@ -54,7 +56,7 @@
                 <!-- must have a form tag for search to work -->
                 <form class="search-form">
                     <!-- input field, no closing tag needed-->
-                    <input id="search-bar" class="user-input" placeholder="enter ticker here">
+                    <input id="search-bar" class="user-input" placeholder="Enter ticker symbol here">
                     <!-- not sure why this is here -->
                     <div class="input-field red-text"></div>
                     <!-- drop down box -->
@@ -66,7 +68,8 @@
                         <option value="30">30 minutes</option>
                         <option value="60">1 hour</option>
                     </select>
-                    <button id="search-btn" class="search-btn" type="submit">Search</button>
+                    <span class="error-msg"></span>
+                    <button id="search-btn" class="page-btn search-btn" type="submit">Search</button>
                 </form>
                 <div id="track-box" class="section">
                     <h5 class="searches hidden">Saved Searches</h5>
@@ -95,26 +98,27 @@
                             <div class="last-trade" id="last-trade"></div>
                         </div>
                         <div class="card-action">
-                            <button id="save" type="button">Save</button>
-                            <button id="remove" class="hidden" type="button">Remove</button>
+                            <button id="save" class="page-btn" type="button">Save</button>
+                            <button id="remove" class="page-btn hidden" type="button">Remove</button>
                         </div>
                     </div>
                 </div>
+                <section class="container center">
+                    <!-- what are we doing here? -->
+                    <div class="newsfeed"></div>
+
+                </section>
             </main>
         </div>
     </section>
-    <section class="container center">
-        <!-- what are we doing here? -->
-        <div class="newsfeed"></div>
-
-    </section>
-    <footer class="container center">
+    <footer class="center">
         <p>&copy;2022. Project Paper Hands. All Rights Reserved.</p>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type = "text/JavaScript" src = " https://MomentJS.com/downloads/moment.js"></script> 
-    <script type = "text/JavaScript" src = "https://momentjs.com/downloads/moment-timezone.js"></script>
-    <script type = "text/JavaScript" src = "https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/JavaScript" src=" https://MomentJS.com/downloads/moment.js"></script>
+    <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone.js"></script>
+    <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
     <script src="./assets/js/script.js"></script>
     <script src="./assets/js/script-2.1.js"></script>
 </body>
