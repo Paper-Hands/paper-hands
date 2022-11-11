@@ -4,6 +4,7 @@ html,body {
     padding: 0;
     width: 100%;
     height: 100%;
+    font-family: 'Libre Baskerville', serif;
 }
 
 aside, main {
@@ -24,6 +25,13 @@ aside {
 
 .header {
     margin-top: 0;
+}
+
+.local-links {
+    display: block;
+    cursor: pointer;
+    text-decoration: underline;
+    color: red;
 }
 
 .logo {

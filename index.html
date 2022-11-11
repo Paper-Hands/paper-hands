@@ -35,8 +35,8 @@
                     <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 </div>
                 <div class="col s12 l4 center time-date">
-                    <span>9:00 AM ET</span>
-                    <span>NOV 10, 2022</span>
+                    <span class="time"></span>
+                    <span class="date">/span>
                 </div>
                 <!-- end mobile menu -->
             </div>
@@ -49,7 +49,7 @@
     <section class="container section main-content">
         <!-- add row class to create columns -->
         <div class="row">
-            <aside class="col s3 card">
+            <aside class="col s12 m3 l3 card">
                 <h5 class="search-banner center-align">Search</h5>
                 <!-- must have a form tag for search to work -->
                 <form class="search-form">
@@ -69,8 +69,8 @@
                     <button id="search-btn" class="search-btn" type="submit">Search</button>
                 </form>
                 <div id="track-box" class="section">
-                    <h5>Previous Searches</h5>
-                    <!-- should link to local storage -->
+                    <h5 class="searches hidden">Saved Searches</h5>
+                    <div id="stored-stocks"></div>
                 </div>
                 <div class="section hot-list">
                     <h5>Trending</h5>
@@ -82,7 +82,7 @@
                 </div>
             </aside>
             <!-- only one main element needed per page -->
-            <main class="col s9">
+            <main class="col s12 m9 l9">
                 <div class="card horizontal">
                     <div class="card-stacked">
                         <div class="card-content">
@@ -112,8 +112,11 @@
         <p>&copy;2022. Project Paper Hands. All Rights Reserved.</p>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script type = "text/JavaScript" src = " https://MomentJS.com/downloads/moment.js"></script> 
+    <script type = "text/JavaScript" src = "https://momentjs.com/downloads/moment-timezone.js"></script>
+    <script type = "text/JavaScript" src = "https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/script-2.1.js"></script>
 </body>
 
 </html>
