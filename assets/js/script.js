@@ -9,6 +9,7 @@ const searchButton = $('#search-btn');
 /** 
  * Makes a fetch request and returns the stock data with the specified parameters in JSON
  * @param url - The url to send the web request to
+ * @param sym - The symbol of the stock to look up
  * @param func - The time series to use
  * @param interval - the time interval between data points. Default value is 5 if not given
 */
@@ -26,8 +27,8 @@ function getStock(url, func, sym, interv = 5) {
 
       let symbol = data['Meta Data']['2. Symbol'];
       var lastRefreshed = data['Meta Data']['3. Last Refreshed'];
-      var lastTradePriceOnly = data['Time Series (5min)'][lastRefreshed]['4. close'];
-      var lastVolume = data['Time Series (5min)'][lastRefreshed]['5. volume'];
+      var lastTradePriceOnly = data[`Time Series (${interv}min)`][lastRefreshed]['4. close'];
+      var lastVolume = data[`Time Series (${interv}min)`][lastRefreshed]['5. volume'];
 
       console.log(activeStock)
       let temp = `${symbol}, ${lastRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`
