@@ -21,14 +21,11 @@ https://paper-hands.github.io/paper-hands/
 
 ## Usage
 
-To use the Paper Hands application, select either the stock or crypto tab. Once on the desired tab, type in the stock or crypto ticker of your choice as well as the time interval of your choosing. When entered, the page will display the stock or crypto you have selected and all its respective information.
+To use the Paper Hands application, select either the stock or crypto tab. Once on the desired tab, type in the stock or crypto ticker of your choice as well as the time interval of your choosing. When entered, the page will display the stock or crypto you have selected and all its respective information. 
 
-
-
+![sreenshot of starting page](/assets/images/screenshot1.png)
     
-    !(assets/images/screenshot1.png)
-    
-    !(assets/images/screenshot2.png)
+![screenshot page populated with stock data](/assets/images/screenshot2.png)
 
 
 ## Credits
