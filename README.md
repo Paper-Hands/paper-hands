@@ -30,7 +30,9 @@ To use the Paper Hands application, select either the stock or crypto tab. Once 
 
 ## Credits
 https://www.alphavantage.co/
+
 https://materializecss.com/
+
 https://fonts.google.com/
 
 Aletoria Booker - https://github.com/ebonygrrl
