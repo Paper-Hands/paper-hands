@@ -1,8 +1,6 @@
 const API_KEY = '2RKX3B5PK69BTLCH';
 const baseUrl = 'https://www.alphavantage.co/query?';
 let queryFunction = 'TIME_SERIES_INTRADAY';
-let interval = '15min';
-//var activeStock = document.getElementById('display-stock') threw errors lines 40, 46
 const searchField = $('#search-bar');
 const searchButton = $('#search-btn');
 const selectField = $('#int option:selected');
@@ -10,6 +8,7 @@ var dateEl = $('#date-refreshed');
 var displayTickerEl = $('#display-ticker');
 var lastTradeEl = $('#last-trade');
 var sharesTradedEl = $('#shares-traded');
+
 /** 
  * Makes a fetch request and returns the stock data with the specified parameters in JSON
  * @param url - The url to send the web request to
@@ -31,20 +30,18 @@ function getStock(url, func, sym, interv = 5) {
 
       let symbol = data['Meta Data']['2. Symbol'];
       var lastRefreshed = data['Meta Data']['3. Last Refreshed'];
-      var lastTradePriceOnly = data['Time Series (5min)'][lastRefreshed]['4. close']; // causes error
-      var lastVolume = data['Time Series (5min)'][lastRefreshed]['5. volume'];
-      /////////////////////////
+      var lastTradePriceOnly = data[`Time Series (${interv}min)`][lastRefreshed]['4. close']; 
+      var lastVolume = data[`Time Series (${interv}min)`][lastRefreshed]['5. volume'];
+
       lastRefreshed = lastRefreshed.split(' ');
       var date = lastRefreshed[0].split('-');
       var dateRefreshed = `${date[1]}/${date[2]}/${date[0]}`;
       displayTickerEl.text(symbol);
-      //console.log(activeStock)
       dateEl.text(dateRefreshed);
       lastTradeEl.text("Last Trade Price(usd): $" + parseInt(lastTradePriceOnly).toFixed(2));
       sharesTradedEl.text("Trade volume (# of trades made): " + lastVolume);
       let temp = `${symbol}, ${dateRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`
       console.log(temp)
-      //activeStock.textContent = temp
     })
 }
 // Capture user input from input forms 
@@ -52,7 +49,6 @@ const getUserInput = () => {
   var select = $('#int option:selected').val();
   console.log(select);
   let symbol = searchField.val();
-  let interval;
   console.log(`SYM: ${symbol}`);
   getStock(baseUrl, queryFunction, symbol, select)
 
