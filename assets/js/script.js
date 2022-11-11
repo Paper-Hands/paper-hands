@@ -11,6 +11,11 @@ var sharesTradedEl = $('#shares-traded');
 var saveBtn = $('#save');
 var count = 0;
 
+var newYork = moment.tz("America/New_York").format('lll');
+console.log(newYork);
+
+var time = $(".time").html(newYork);
+
 /** 
  * Makes a fetch request and returns the stock data with the specified parameters in JSON
  * @param url - The url to send the web request to
