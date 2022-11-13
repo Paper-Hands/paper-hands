@@ -21,10 +21,10 @@
                     <a href="#!" class="brand-logo logo"><i class="large material-icons">cloud</i>Paper Hands</a>
                 </div>
                 <div class="col s12 m6 l4 hide-on-med-and-down">
-                    <ul>
+                    <ul class="topnav">
                         <!-- menu links -->
                         <li><span id="crypto-link">Crypto Currencies</span></li>
-                        <li class="active"><span id="stock-link">Stock Tracker</span></li>
+                        <li><span id="stock-link">Stock Tracker</span></li>
                     </ul> <!-- end menu links -->
                 </div>
                 <!-- mobile menu -->
@@ -44,7 +44,7 @@
             </div>
         </nav>
         <section class="container page-title">
-            <h1>Stock Tracker</h1>
+            <h1></h1>
         </section>
     </header>
     <!-- add container class to give width and center -->
@@ -57,8 +57,6 @@
                 <form class="search-form">
                     <!-- input field, no closing tag needed-->
                     <input id="search-bar" class="user-input" placeholder="Enter ticker symbol here">
-                    <!-- not sure why this is here -->
-                    <div class="input-field red-text"></div>
                     <!-- drop down box -->
                     <select name="interval" id="int" class="options">
                         <option value="" disabled selected>Select an interval</option>
@@ -74,14 +72,6 @@
                 <div id="track-box" class="section">
                     <h5 class="searches hidden">Saved Searches</h5>
                     <div id="stored-stocks"></div>
-                </div>
-                <div class="section hot-list">
-                    <h5>Trending</h5>
-                    <ul id="stocklist-root">
-                        <li>AMC</li>
-                        <li>IBM</li>
-                        <li>AMZ</li>
-                    </ul>
                 </div>
             </aside>
             <!-- only one main element needed per page -->
@@ -103,10 +93,23 @@
                         </div>
                     </div>
                 </div>
+                <div class="card horizontal">
+                    <div class="card-stacked">
+                        <div class="card-content">                
+                            <div class="section hot-list">
+                                <h5>Trending</h5>
+                                <ul id="stocklist-root">
+                                    <li>AMC</li>
+                                    <li>IBM</li>
+                                    <li>AMZ</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <section class="container center">
                     <!-- what are we doing here? -->
                     <div class="newsfeed"></div>
-
                 </section>
             </main>
         </div>
@@ -120,7 +123,7 @@
     <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone.js"></script>
     <script type="text/JavaScript" src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
     <script src="./assets/js/script.js"></script>
-    <script src="./assets/js/script-2.1.js"></script>
+    <!-- <script src="./assets/js/script-2.1.js"></script> -->
 </body>
 
 </html>

@@ -48,6 +48,7 @@ footer {
 
 .header {
     margin-top: 0;
+    text-transform: uppercase;
 }
 
 .local-links {
@@ -151,7 +152,6 @@ footer {
 }
 
 .search-btn {
-    margin-top: 10px;
     width: 100%;
 }
 
@@ -163,6 +163,7 @@ footer {
 .user-input {
     box-sizing: border-box !important;
     display: block;
+    margin-bottom: 0;
     overflow: hidden !important;
     padding-left: 10px !important;
     text-transform: uppercase;
