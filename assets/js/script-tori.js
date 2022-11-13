@@ -165,31 +165,7 @@ const searchButtonHandler = (e) => {
       error.html('').attr('display','none');
     }
   }
-}
-
-// Activation to retrieve ticker symbol from localStorage
-function savedStocks() {
-  var windowLoc = window.localStorage;
-  var outPut = "";
-  if (windowLoc.length > 0) {
-    for (i = 0; i <= windowLoc.length; i++) {
-      var getSaved = "entry-" + i;
-      var localStock = localStorage.getItem(getSaved);
-      outPut += "<span class='local-links'>" + localStock + "</span>";
-    }
-    $('#stored-stocks').html(outPut);
-    $('.searches').removeClass('hidden');
-  }
-}
-
-// Activation to store ticker symbol to localStorage
-function storeStocks() {
-  let sym = searchField.val().toUpperCase(); // Makes all caps
-  if (sym !== "") {
-    var saved = "entry-" + count;
-    localStorage.setItem(saved, sym);
-    count += 1;
-  }
+  savedStocks();
 }
 
 // Button: Search ticker
@@ -197,7 +173,7 @@ searchButton.on('click', searchButtonHandler);
 
 // Button: Save ticker symbol to localStorage
 saveBtn.on('click', function () {
-  storeStocks();
+  //storeStocks();
   savedStocks();
 }); 
 
@@ -217,6 +193,75 @@ removeBtn.on('click', function() {
 
 // Have stock loaded so user doesn't see an empty page
 getStock(baseUrl, queryFunction, 'IBM', 5);
+
+
+// Activation for saved searches list from localStorage
+// Activation to store ticker symbol to localStorage and populate saved searches list from localStorage
+function savedStocks() {
+  var windowLoc = window.localStorage;
+  var sym = displayTickerEl.text();
+  var outPut = "";
+
+  console.log(windowLoc.key(1) + ', ' + localStorage.getItem(windowLoc.key(1)));
+
+  if (windowLoc.length > 0) {
+    for (i = 0; i < windowLoc.length; i++) {
+      console.log('display: ' + sym + ',  localStorage: ' + localStorage.getItem(windowLoc.key(i)));
+
+      if (sym === localStorage.getItem(windowLoc.key(i))) {
+        console.log('match');
+      }
+      var entry = windowLoc.key(i);      
+      //var saved = "entry-" + i;
+      var localStock = localStorage.getItem(entry);
+      //console.log(entry + ', ' + localStock);
+    }
+    /*  if (entry === localStorage.getItem(windowLoc.key(i))) { // the values
+        console.log('yes')
+      } else {
+        console.log(entry + ', ' + saved)
+      }*/
+      //newEntry = entry.split('-');
+      //console.log(newEntry);
+
+
+      // if (newEntry[1].match(entry)) {
+      //   console.log(true);
+      // } else {
+      //   console.log(false);
+      // }
+        // store  
+        /*      
+        count += 1;
+        var saved = "entry-" + count;
+        localStorage.setItem(saved, sym);
+      } else {
+        var saved = "entry-" + count;
+        localStorage.setItem(saved, sym);
+        count += 1;
+
+      }*/
+
+  // get
+    //}
+    /*
+    for (i = 0; i <= windowLoc.length; i++) {
+      var getSaved = "entry-" + i;
+      var localStock = localStorage.getItem(getSaved);
+      outPut += "<span class='local-links'>" + localStock + "</span>";
+    }
+    $('#stored-stocks').prepend(outPut);*/
+    $('.searches').removeClass('hidden');
+  }
+}
+
+// Activation to store ticker symbol to localStorage
+// function storeStocks() {
+//   let sym = displayTickerEl.text(); // Makes all caps
+//   var saved = "entry-" + count;
+//   localStorage.setItem(saved, sym);
+//   count += 1;
+// }
 
 // Check localStorage on window load/refresh
 savedStocks(); 
