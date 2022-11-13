@@ -13,16 +13,19 @@
  * @param interval - the time interval between data points. Default value is 5 if not given
 */
 
-// Request Crypto URL
-const cryptoUrl = 'https://www.alphavantage.co/query?'
-const API_KEY2 = '2RKX3B5PK69BTLCH';
+// Request URL
+const baseUrl = 'https://www.alphavantage.co/query?'
+const API_KEY = '2RKX3B5PK69BTLCH';
+
+// Request crypto function
 const apiFunction = 'DIGITAL_CURRENCY_DAILY';
 const marketCurrency = 'USD';
 
-// Request Stock URL
-const API_KEY = '2RKX3B5PK69BTLCH';
-const baseUrl = 'https://www.alphavantage.co/query?';
+// Request stock function
 let queryFunction = 'TIME_SERIES_INTRADAY';
+
+// Request news function
+const newsFunction = 'NEWS_SENTIMENT';
 
 // Page data
 let pageType = $('.page-title h1');
@@ -51,11 +54,11 @@ var count = 0;
 
 // Function to get crypto index data
 const getCrypto = (url, func, symbol, market) => {
-  let req = `${url}function=${func}&symbol=${symbol}&market=${market}&apikey=${API_KEY2}` // request url
+  let request = `${url}function=${func}&symbol=${symbol}&market=${market}&apikey=${API_KEY}` // request url
   //console.log(`CRYPTO : ${req}`); 
 
   // send get request to the request url
-  fetch(req)
+  fetch(request)
     .then(function (response) {
       return response.json(); // returns the response data in json format
     })
@@ -103,16 +106,45 @@ const getStock = (url, func, sym, interv = 5) => {
     })
 }
 
+const getNews = (url, func, ticker, topics) => {  
+  //let request = `${url}function=${func}&tickers=${ticker}&topics=${topics}&sort=LATEST&limit=10&apikey=${API_KEY}`; // request url
+  let request = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&sort=LATEST&limit=10&apikey=2RKX3B5PK69BTLCH`;
+  console.log(request)
+  fetch(request)
+    .then(function (response){      
+      return response.json(); // returns the response data in json format
+    })
+    .then(function (data) {
+      console.log(data['feed'].length);
+      for (var i=0; i < data['feed'].length; i++) {
+        var title = data['feed'][i].title;
+        var feedUrl = data['feed'][i].url;
+        var itemWrap = $('.hmove');
+        var itemLink = `<div class="hitem"><a href='${feedUrl}'>${title}</a></div>`;
+
+        itemWrap.append(itemLink);
+      }
+    })
+}
+
 // Capture user input from input forms 
 const getUserInput = () => {
   var select = $('#int option:selected').val();
   var symbol = searchField.val();
+  var cryptoTicker = `COIN,CRYPTO:BTC,FOREX:USD`;
+  var topix = '';
   if (pageType.text() === navCrypto) {
-    getCrypto(cryptoUrl, apiFunction, symbol, 'USD');
+    topix = `blockchain,finance,technology`;
+    getCrypto(baseUrl, apiFunction, symbol, 'USD');
+    getNews(baseUrl, newsFunction, cryptoTicker, topix);
   } else if (pageType.text() === navStock) {
+    topix = `ipo,earnings,financial_markets,finance`;
     getStock(baseUrl, queryFunction, symbol, select);
+    getNews(baseUrl, newsFunction, symbol, topix);
   } else {
+    topix = `ipo,earnings,financial_markets,finance`;
     getStock(baseUrl, queryFunction, symbol, select);
+    getNews(baseUrl, newsFunction, symbol, topix);
   }
 }
 
@@ -217,6 +249,9 @@ removeBtn.on('click', function() {
 
 // Have stock loaded so user doesn't see an empty page
 getStock(baseUrl, queryFunction, 'IBM', 5);
+
+topix = `ipo,earnings,financial_markets,finance`;
+getNews(baseUrl, newsFunction, 'IBM', topix);
 
 // Check localStorage on window load/refresh
 savedStocks(); 
