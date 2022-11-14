@@ -65,16 +65,27 @@ const getCrypto = (url, func, symbol, market) => {
       return response.json(); // returns the response data in json format
     })
     .then(function (data) {
-      let symbol = data['Meta Data']['2. Digital Currency Code'];
-      var lastRefreshed = data['Meta Data']['6. Last Refreshed'];
-      //var lastTradePriceOnly = data[`Time Series (Digital Currency Daily)`][lastRefreshed]['4a. close']; 
-      //var lastVolume = data[`Time Series (Digital Currency Daily)`][lastRefreshed]['5. volume'];
-
+      const symbol = data['Meta Data']['2. Digital Currency Code'];
+      let lastRefreshed = data['Meta Data']['6. Last Refreshed'];
+      const cryptoName = data['Meta Data']['3. Digital Currency Name']
+      const marketCode = data['Meta Data']['4. Market Code']
+      const latestPriceData = data['Time Series (Digital Currency Daily)'];
       lastRefreshed = lastRefreshed.split(' ');
-      var date = lastRefreshed[0].split('-');
-      var dateRefreshed = `${date[1]}/${date[2]}/${date[0]}`;
+      let date = lastRefreshed[0].split('-')
+      let dateString = `${date[0]}-${date[1]}-${date[2]}`
+      
+      const lastVolume = latestPriceData[dateString]['5. volume']
+      const lastTradePriceOnly = data[`Time Series (Digital Currency Daily)`][dateString]['4b. close (USD)']; 
+      //var lastVolume = data[`Time Series (Digital Currency Daily)`][lastRefreshed]['5. volume'];
+      // lastRefreshed = lastRefreshed.split(' ');
+      // var date = lastRefreshed[0].split('-');
+      // var dateRefreshed = `${date[1]}/${date[2]}/${date[0]}`;
+
       displayTickerEl.text(symbol);
-      dateEl.text(dateRefreshed);
+      // dateEl.text(dateRefreshed);
+      dateEl.text(dateString);
+      lastTradeEl.text(`Last Trade Price (USD) $: ${parseFloat(lastTradePriceOnly).toFixed(2)}`);
+      sharesTradedEl.text(`Trade volume (# of trades made) : ${parseFloat(lastVolume).toFixed(2)}`)
       //lastTradeEl.text("Last Trade Price(USD): $" + parseInt(lastTradePriceOnly).toFixed(2));
       //sharesTradedEl.text("Trade volume (# of trades made): " + lastVolume);
       //let temp = `${symbol}, ${dateRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`;
@@ -94,7 +105,7 @@ const getStock = (url, func, sym, interv = 5) => {
     .then(function (data) {
       let symbol = data['Meta Data']['2. Symbol'];
       var lastRefreshed = data['Meta Data']['3. Last Refreshed'];
-      var lastTradePriceOnly = data[`Time Series (${interv}min)`][lastRefreshed]['4. close']; 
+      var lastTradePriceOnly = data[`Time Series (${interv}min)`][lastRefreshed]['4. close'];
       var lastVolume = data[`Time Series (${interv}min)`][lastRefreshed]['5. volume'];
 
       lastRefreshed = lastRefreshed.split(' ');
@@ -103,23 +114,23 @@ const getStock = (url, func, sym, interv = 5) => {
 
       displayTickerEl.text(symbol);
       dateEl.text(dateRefreshed);
-      lastTradeEl.text("Last Trade Price(USD): $" + parseInt(lastTradePriceOnly).toFixed(2));
+      lastTradeEl.text("Last Trade Price(USD): $" + parseFloat(lastTradePriceOnly).toFixed(2));
       sharesTradedEl.text("Trade volume (# of trades made): " + lastVolume);
       //let temp = `${symbol}, ${dateRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`;
     })
 }
 
-const getNews = (url, func, ticker, topics) => {  
+const getNews = (url, func, ticker, topics) => {
   //let request = `${url}function=${func}&tickers=${ticker}&topics=${topics}&sort=LATEST&limit=10&apikey=${API_KEY}`; // request url
   let request = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&sort=LATEST&limit=10&apikey=2RKX3B5PK69BTLCH`;
   console.log(request)
   fetch(request)
-    .then(function (response){      
+    .then(function (response) {
       return response.json(); // returns the response data in json format
     })
     .then(function (data) {
       console.log(data['feed'].length);
-      for (var i=0; i < data['feed'].length; i++) {
+      for (var i = 0; i < data['feed'].length; i++) {
         var title = data['feed'][i].title;
         var feedUrl = data['feed'][i].url;
         var itemWrap = $('.hmove');
@@ -163,41 +174,41 @@ const searchButtonHandler = (e) => {
     if (searchField.val() === '' && select === '') { // Force to complete both fields
       error
         .html('We all make mistakes. Please try again.')
-        .attr('display','block');        
-      searchField.css('background-color','yellow');
-      $('.options').css('background-color','yellow');
+        .attr('display', 'block');
+      searchField.css('background-color', 'yellow');
+      $('.options').css('background-color', 'yellow');
     } else if (searchField.val() === '' && select !== '') {
       error
         .html('Please enter a ticker symbol.')
-        .attr('display','block');
-      searchField.css('background-color','yellow');
+        .attr('display', 'block');
+      searchField.css('background-color', 'yellow');
     } else if (select === '' && searchField.val() !== '') {
       error
         .html('Please select an interval.')
-        .attr('display','block');
-      selectField.css('background-color','yellow');
+        .attr('display', 'block');
+      selectField.css('background-color', 'yellow');
     } else {
       if (!searchField.val().match(letters)) { // Force letters only, no numbers or special characters
         error.text('Please enter a real index symbol.');
       } else {
         getUserInput();
-        $('.options').css('background-color','#ffffff');
-        searchField.css('background-color','white');
-        error.html('').attr('display','none');
+        $('.options').css('background-color', '#ffffff');
+        searchField.css('background-color', 'white');
+        error.html('').attr('display', 'none');
       }
     }
   } else if (pageType.text() === navCrypto) {// <------------ If Crypto Tracker
     if (searchField.val() === '') { // Force to complete search field
       error
         .html('Please enter a crypto index.')
-        .attr('display','block');
-      searchField.css('background-color','yellow');
+        .attr('display', 'block');
+      searchField.css('background-color', 'yellow');
     } else if (!searchField.val().match(letters)) { // Force letters only, no numbers or special characters
       error.text('Please use letters only.');
     } else {
       getUserInput();
-      searchField.css('background-color','#ffffff');
-      error.html('').attr('display','none');
+      searchField.css('background-color', '#ffffff');
+      error.html('').attr('display', 'none');
     }
   }
 }
@@ -234,25 +245,25 @@ searchButton.on('click', searchButtonHandler);
 saveBtn.on('click', function () {
   storeStocks();
   savedStocks();
-}); 
+});
 
 // Button: Remove ticker from localStorage
-removeBtn.on('click', function() {
+removeBtn.on('click', function () {
   //loops through local storage to find matching key
-for (let i = 0; i < localStorage.length; i++) {
-  const key = localStorage.key(i);
-  console.log(`${key}: ${localStorage.getItem(key)}`);
-  //if value matches page refreshes and the stock will be removed
-  if (localStorage.getItem(key) === displayTickerEl.text()) {
-    console.log("big ole W");
-    localStorage.removeItem(key);
-    location.reload();
-  } else {
-    console.log("not quite");
-    console.log(displayTickerEl.text());
-    console.log(localStorage.getItem(key));
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    console.log(`${key}: ${localStorage.getItem(key)}`);
+    //if value matches page refreshes and the stock will be removed
+    if (localStorage.getItem(key) === displayTickerEl.text()) {
+      console.log("big ole W");
+      localStorage.removeItem(key);
+      location.reload();
+    } else {
+      console.log("not quite");
+      console.log(displayTickerEl.text());
+      console.log(localStorage.getItem(key));
+    }
   }
-}
 
 });
 
@@ -264,41 +275,41 @@ topix = `ipo,earnings,financial_markets,finance`;
 getNews(baseUrl, newsFunction, 'IBM', topix);
 
 // Check localStorage on window load/refresh
-savedStocks(); 
+savedStocks();
 
 // Symbol list populated from localStorage
-$('.local-links').on('click', function() {
+$('.local-links').on('click', function () {
   var saveButton = $(this).text();
   getStock(baseUrl, queryFunction, saveButton, 5);
 });
 
 // Navigation
-$('.topnav li').on('click', function() {
+$('.topnav li').on('click', function () {
   $('.topnav li').removeClass('active');
   $(this).addClass('active');
   pageType.text($('.active span').text());
 
   if (pageType.text() === navStock) {
-    $('.options').css('display','block');
+    $('.options').css('display', 'block');
   } else {
-    $('.options').css('display','none');
+    $('.options').css('display', 'none');
   }
 });
 
 // Init
-$(document).ready(function(){
+$(document).ready(function () {
   // Mobile menu
-  $('.sidenav').sidenav(); 
+  $('.sidenav').sidenav();
 
   // Header
   $('.page-title h1').text(navStock);
 
-/*
-  for (i=0;i<localStorage.length;i++) {
-    var entry = localStorage.key(i);
-    console.log( entry );
-    if(entry.match(/entry-/)) {
-      console.log(`hi ${localStorage.getItem(entry.match(/entry-/)) } ` );
-    }
-  }*/
+  /*
+    for (i=0;i<localStorage.length;i++) {
+      var entry = localStorage.key(i);
+      console.log( entry );
+      if(entry.match(/entry-/)) {
+        console.log(`hi ${localStorage.getItem(entry.match(/entry-/)) } ` );
+      }
+    }*/
 }); 
