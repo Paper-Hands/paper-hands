@@ -235,17 +235,24 @@ saveBtn.on('click', function () {
 
 // Button: Remove ticker from localStorage
 removeBtn.on('click', function() {
-  var removeButton = displayTickerEl.text();
-  //if local storage contains value xyz, then get key name, then localStorage.removeItem(key)
-  //pull all values from local storage, then compare the values with the 
-  var myArray = []
-  for ( var i = 1; i <= localStorage.length; i++ ) {
-    console.log( localStorage.getItem( localStorage.key("entry-" + i ) ) );
-    var array = localStorage.getItem(localStorage.key("entry-" + i));
-    myArray.push(array);
-    console.log(myArray);
-  }  
+  //loops through local storage to find matching key
+for (let i = 0; i < localStorage.length; i++) {
+  const key = localStorage.key(i);
+  console.log(`${key}: ${localStorage.getItem(key)}`);
+  //if value matches page refreshes and the stock will be removed
+  if (localStorage.getItem(key) === displayTickerEl.text()) {
+    console.log("big ole W");
+    localStorage.removeItem(key);
+    location.reload();
+  } else {
+    console.log("not quite");
+    console.log(displayTickerEl.text());
+    console.log(localStorage.getItem(key));
+  }
+}
+
 });
+
 
 // Have stock loaded so user doesn't see an empty page
 getStock(baseUrl, queryFunction, 'IBM', 5);
