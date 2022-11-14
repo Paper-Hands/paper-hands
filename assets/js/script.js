@@ -107,15 +107,12 @@ const getStock = (url, func, sym, interv = 5) => {
 }
 
 const getNews = (url, func, ticker, topics) => {  
-  //let request = `${url}function=${func}&tickers=${ticker}&topics=${topics}&sort=LATEST&limit=10&apikey=${API_KEY}`; // request url
-  let request = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&sort=LATEST&limit=10&apikey=2RKX3B5PK69BTLCH`;
-  console.log(request)
+  let request = `${url}function=${func}&sort=LATEST&limit=50&apikey=${API_KEY}`; // request url
   fetch(request)
     .then(function (response){      
       return response.json(); // returns the response data in json format
     })
     .then(function (data) {
-      console.log(data['feed'].length);
       for (var i=0; i < data['feed'].length; i++) {
         var title = data['feed'][i].title;
         var feedUrl = data['feed'][i].url;
@@ -201,28 +198,44 @@ const searchButtonHandler = (e) => {
 
 // Activation to retrieve ticker symbol from localStorage
 function savedStocks() {
-  var outPut = "";
+  var output = "";
+  var arr = [];
+
   if (localStorage.length > 0) {
-    var i=0;
-    while(i < localStorage.length) {
-      var localStock = localStorage.getItem("entry-" + i);
-      console.log(localStock);
-      outPut += "<span class='local-links'>" + localStock + "</span>";
-      i++;
+    for (var i=0; i < localStorage.length; i++) {
+      if (localStorage.key(i).substring(0,6) === 'entry-') {
+        arr.push(localStorage.key(i));
+        $('.searches').removeClass('hide');
+      }
     }
-    $('#stored-stocks').html(outPut);
-    $('.searches').removeClass('hidden');
+    for (var j=0; j < arr.length; j++) {  
+      output += "<span class='local-links'>" + localStorage.getItem(arr[j]) + "</span>";
+    }
+    $('#stored-stocks').html(output);
   }
 }
 
 // Activation to store ticker symbol to localStorage
 function storeStocks() {
   let sym = searchField.val().toUpperCase(); // Makes all caps
-  if (sym !== "") {
-    var saved = "entry-" + count;
-    localStorage.setItem(saved, sym);
-    count += 1;
+  var arr = [];
+
+  for (var i=0; i < localStorage.length; i++) {
+    if (localStorage.key(i).substring(0,6) === 'entry-') {
+      arr.push(localStorage.key(i));
+    }
   }
+  for (var j=0; j < arr.length; j++) {    
+    if (sym === localStorage.getItem(arr[j])) {
+      $('.notification').text('Index already saved.').removeClass('hide');
+    } else {
+      console.log('fire');
+      var saved = "entry-" + count;
+      localStorage.setItem(saved, sym);
+      count += 1;
+      $('.notification').addClass('hide');
+    }
+  }  
 }
 
 // Button: Search ticker
@@ -244,14 +257,15 @@ for (let i = 0; i < localStorage.length; i++) {
   if (localStorage.getItem(key) === displayTickerEl.text()) {
     console.log("big ole W");
     localStorage.removeItem(key);
-    location.reload();
+    //location.reload();
+    $('.notification').text('Index removed from storage.').removeClass('hide');
   } else {
     console.log("not quite");
     console.log(displayTickerEl.text());
     console.log(localStorage.getItem(key));
+    $('.notification').addClass('hide');
   }
 }
-
 });
 
 
@@ -290,13 +304,4 @@ $(document).ready(function(){
 
   // Header
   $('.page-title h1').text(navStock);
-
-/*
-  for (i=0;i<localStorage.length;i++) {
-    var entry = localStorage.key(i);
-    console.log( entry );
-    if(entry.match(/entry-/)) {
-      console.log(`hi ${localStorage.getItem(entry.match(/entry-/)) } ` );
-    }
-  }*/
 }); 

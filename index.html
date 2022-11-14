@@ -70,12 +70,12 @@
                     <button id="search-btn" class="page-btn search-btn" type="submit">Search</button>
                 </form>
                 <div id="track-box" class="section">
-                    <h5 class="searches hidden">Saved Searches</h5>
+                    <h5 class="searches hide">Saved Searches</h5>
                     <div id="stored-stocks"></div>
                 </div>
             </aside>
             <!-- only one main element needed per page -->
-            <main class="col s12 m9 l9">
+            <main class="col s12 m9 l9 info">
                 <div class="card horizontal">
                     <div class="card-stacked">
                         <div class="card-content">
@@ -89,7 +89,8 @@
                         </div>
                         <div class="card-action">
                             <button id="save" class="page-btn" type="button">Save</button>
-                            <button id="remove" class="page-btn hidden" type="button">Remove</button>
+                            <button id="remove" class="page-btn hide" type="button">Remove</button>
+                            <span class="notification hide"></span>
                         </div>
                     </div>
                 </div>
@@ -107,15 +108,13 @@
                         </div>
                     </div>
                 </div>
-                <section class="container center">
-                    <div class="newsfeed hwrap">
-                        <div class="hmove">
-                            <!--
-                            <div class="hitem">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            -->
-                        </div>
+                <div class="newsfeed hwrap">
+                    <div class="hmove">
+                        <!--
+                        <div class="hitem">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                        -->
                     </div>
-                </section>
+                </div>
             </main>
         </div>
     </section>
