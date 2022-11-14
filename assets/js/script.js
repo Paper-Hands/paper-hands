@@ -201,13 +201,14 @@ const searchButtonHandler = (e) => {
 
 // Activation to retrieve ticker symbol from localStorage
 function savedStocks() {
-  var windowLoc = window.localStorage;
   var outPut = "";
-  if (windowLoc.length > 0) {
-    for (i = 0; i <= windowLoc.length; i++) {
-      var getSaved = "entry-" + i;
-      var localStock = localStorage.getItem(getSaved);
+  if (localStorage.length > 0) {
+    var i=0;
+    while(i < localStorage.length) {
+      var localStock = localStorage.getItem("entry-" + i);
+      console.log(localStock);
       outPut += "<span class='local-links'>" + localStock + "</span>";
+      i++;
     }
     $('#stored-stocks').html(outPut);
     $('.searches').removeClass('hidden');
