@@ -13,6 +13,31 @@ const marketCurrency = 'USD';
 const getCrypto = (url, func, symbol, market) => {
     let req = `${url}function=${func}&symbol=${symbol}&market=${market}&apikey=${API_KEY2}` // request url
     console.log(`CRYPTO : ${req}`);
+
+
+    fetch(req)
+    .then(res => res.json())
+    .then(data => {
+        console.log(`Crypto Data: ${data}`);
+
+        const symbol = data['Meta Data']['2. Digital Currency Code']
+        const cryptoName = data['Meta Data']['3. Digital Currency Name']
+        const marketCode = data['Meta Data']['4. Market Code']
+        const latestPriceData = data['Time Series (Digital Currency Daily)'];
+        let lastRefreshed = data['Meta Data']['6. Last Refreshed']
+
+        lastRefreshed = lastRefreshed.split(' ');
+        let date = lastRefreshed[0].split('-')
+        let dateString = `${date[0]}-${date[1]}-${date[2]}`
+
+
+        console.log(`crypto | sym: ${symbol} | name: ${cryptoName} | market: ${marketCode} | lastRefreshed: ${lastRefreshed} | date: ${date}`);
+        console.log(`latest open : ${latestPriceData[dateString]['1a. open (USD)']}`)
+
+        // console.log(latestPriceData);
+
+    })
+
 }
 
 getCrypto(cryptoUrl, apiFunction, 'ETH', 'USD');

@@ -73,6 +73,7 @@ footer {
 }
 
 .logo {
+    padding-top: 10px !important;
     position: relative !important;
 }
 
@@ -162,7 +163,7 @@ footer {
 
 .time-date span {
     display: block;
-    padding-bottom: 5px;
+    padding: 10px 0;
 }
 
 .user-input {
@@ -245,11 +246,15 @@ footer {
 }
 
 @media screen and (max-width: 575px) {
-    h1 {
-        font-size: 3.2rem;
+    header .container, header .row .col, .info {
+        padding: 0 !important;
     }
 
-    .info {
-        padding: 0 !important;
-    }    
+    h1 {
+        font-size: 3.2rem;
+    }  
+
+    header .container.page-title {
+        padding: 0 15px !important;
+    }
 }
