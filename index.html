@@ -17,7 +17,7 @@
     <header>
         <nav id="navbar" class="navbar blue darken-4">
             <div class="container row flex">
-                <div class="col s6 m6 l4 left">
+                <div class="col s12 m6 l4">
                     <a href="#!" class="brand-logo logo"><i class="large material-icons">cloud</i>Paper Hands</a>
                 </div>
                 <div class="col s12 m6 l4">
@@ -26,15 +26,6 @@
                         <li><span id="crypto-link">Crypto Currencies</span></li>
                         <li><span id="stock-link">Stock Tracker</span></li>
                     </ul> <!-- end menu links -->
-                </div>
-                <!-- mobile menu -->
-                <ul id="nav-mobile" class="sidenav">
-                    <!-- menu links -->
-                    <li>Crypto Currencies</li>
-                    <li>Stock Tracker</li>
-                </ul> <!-- end menu links -->
-                <div class="col s6 m6 l4 right hide">
-                    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 </div>
                 <div class="col s12 m4 l4 center time-date">
                     <span class="nav-time"></span>
@@ -69,12 +60,12 @@
                     <button id="search-btn" class="page-btn search-btn" type="submit">Search</button>
                 </form>
                 <div id="track-box" class="section">
-                    <h5 class="searches hidden">Saved Searches</h5>
+                    <h5 class="searches hide">Saved Searches</h5>
                     <div id="stored-stocks"></div>
                 </div>
             </aside>
             <!-- only one main element needed per page -->
-            <main class="col s12 m9 l9">
+            <main class="col s12 m9 l9 info">
                 <div class="card horizontal">
                     <div class="card-stacked">
                         <div class="card-content">
@@ -88,7 +79,8 @@
                         </div>
                         <div class="card-action">
                             <button id="save" class="page-btn" type="button">Save</button>
-                            <button id="remove" class="page-btn hidden" type="button">Remove</button>
+                            <button id="remove" class="page-btn hide" type="button">Remove</button>
+                            <span class="notification hide"></span>
                         </div>
                     </div>
                 </div>
@@ -106,15 +98,13 @@
                         </div>
                     </div>
                 </div>
-                <section class="container center">
-                    <div class="newsfeed hwrap">
-                        <div class="hmove">
-                            <!--
-                            <div class="hitem">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                            -->
-                        </div>
+                <div class="newsfeed hwrap">
+                    <div class="hmove">
+                        <!--
+                        <div class="hitem">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                        -->
                     </div>
-                </section>
+                </div>
             </main>
         </div>
     </section>

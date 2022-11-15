@@ -120,17 +120,14 @@ const getStock = (url, func, sym, interv = 5) => {
     })
 }
 
-const getNews = (url, func, ticker, topics) => {
-  //let request = `${url}function=${func}&tickers=${ticker}&topics=${topics}&sort=LATEST&limit=10&apikey=${API_KEY}`; // request url
-  let request = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&sort=LATEST&limit=10&apikey=2RKX3B5PK69BTLCH`;
-  console.log(request)
+const getNews = (url, func, ticker, topics) => {  
+  let request = `${url}function=${func}&sort=LATEST&limit=50&apikey=${API_KEY}`; // request url
   fetch(request)
     .then(function (response) {
       return response.json(); // returns the response data in json format
     })
     .then(function (data) {
-      console.log(data['feed'].length);
-      for (var i = 0; i < data['feed'].length; i++) {
+      for (var i=0; i < data['feed'].length; i++) {
         var title = data['feed'][i].title;
         var feedUrl = data['feed'][i].url;
         var itemWrap = $('.hmove');
@@ -215,16 +212,20 @@ const searchButtonHandler = (e) => {
 
 // Activation to retrieve ticker symbol from localStorage
 function savedStocks() {
-  var windowLoc = window.localStorage;
-  var outPut = "";
-  if (windowLoc.length > 0) {
-    for (i = 0; i <= windowLoc.length; i++) {
-      var getSaved = "entry-" + i;
-      var localStock = localStorage.getItem(getSaved);
-      outPut += "<span class='local-links'>" + localStock + "</span>";
+  var output = "";
+  var arr = [];
+
+  if (localStorage.length > 0) {
+    for (var i=0; i < localStorage.length; i++) {
+      if (localStorage.key(i).substring(0,6) === 'entry-') {
+        arr.push(localStorage.key(i));
+        $('.searches').removeClass('hide');
+      }
     }
-    $('#stored-stocks').html(outPut);
-    $('.searches').removeClass('hidden');
+    for (var j=0; j < arr.length; j++) {  
+      output += "<span class='local-links'>" + localStorage.getItem(arr[j]) + "</span>";
+    }
+    $('#stored-stocks').html(output);
   }
 }
 
@@ -250,23 +251,23 @@ saveBtn.on('click', function () {
 // Button: Remove ticker from localStorage
 removeBtn.on('click', function () {
   //loops through local storage to find matching key
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    console.log(`${key}: ${localStorage.getItem(key)}`);
-    //if value matches page refreshes and the stock will be removed
-    if (localStorage.getItem(key) === displayTickerEl.text()) {
-      console.log("big ole W");
-      localStorage.removeItem(key);
-      location.reload();
-    } else {
-      console.log("not quite");
-      console.log(displayTickerEl.text());
-      console.log(localStorage.getItem(key));
-    }
+for (let i = 0; i < localStorage.length; i++) {
+  const key = localStorage.key(i);
+  console.log(`${key}: ${localStorage.getItem(key)}`);
+  //if value matches page refreshes and the stock will be removed
+  if (localStorage.getItem(key) === displayTickerEl.text()) {
+    console.log("big ole W");
+    localStorage.removeItem(key);
+    //location.reload();
+    $('.notification').text('Index removed from storage.').removeClass('hide');
+  } else {
+    console.log("not quite");
+    console.log(displayTickerEl.text());
+    console.log(localStorage.getItem(key));
+    $('.notification').addClass('hide');
   }
-
+}
 });
-
 
 // Have stock loaded so user doesn't see an empty page
 getStock(baseUrl, queryFunction, 'IBM', 5);
@@ -303,13 +304,4 @@ $(document).ready(function () {
 
   // Header
   $('.page-title h1').text(navStock);
-
-  /*
-    for (i=0;i<localStorage.length;i++) {
-      var entry = localStorage.key(i);
-      console.log( entry );
-      if(entry.match(/entry-/)) {
-        console.log(`hi ${localStorage.getItem(entry.match(/entry-/)) } ` );
-      }
-    }*/
 }); 
