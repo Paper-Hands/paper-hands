@@ -73,29 +73,18 @@ const getCrypto = (url, func, symbol, market) => {
       lastRefreshed = lastRefreshed.split(' ');
       let date = lastRefreshed[0].split('-')
       let dateString = `${date[0]}-${date[1]}-${date[2]}`
-      
       const lastVolume = latestPriceData[dateString]['5. volume']
       const lastTradePriceOnly = data[`Time Series (Digital Currency Daily)`][dateString]['4b. close (USD)']; 
-      //var lastVolume = data[`Time Series (Digital Currency Daily)`][lastRefreshed]['5. volume'];
-      // lastRefreshed = lastRefreshed.split(' ');
-      // var date = lastRefreshed[0].split('-');
-      // var dateRefreshed = `${date[1]}/${date[2]}/${date[0]}`;
-
       displayTickerEl.text(symbol);
-      // dateEl.text(dateRefreshed);
       dateEl.text(dateString);
       lastTradeEl.text(`Last Trade Price (USD) $: ${parseFloat(lastTradePriceOnly).toFixed(2)}`);
       sharesTradedEl.text(`Trade volume (# of trades made) : ${parseFloat(lastVolume).toFixed(2)}`)
-      //lastTradeEl.text("Last Trade Price(USD): $" + parseInt(lastTradePriceOnly).toFixed(2));
-      //sharesTradedEl.text("Trade volume (# of trades made): " + lastVolume);
-      //let temp = `${symbol}, ${dateRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`;
     })
 }
 
 // Function to get stock index data
 const getStock = (url, func, sym, interv = 5) => {
   let request = `${url}function=${func}&symbol=${sym}&interval=${interv}min&apikey=${API_KEY}`; // request url
-  //console.log(request);
 
   // send get request to the request url
   fetch(request)
@@ -116,7 +105,6 @@ const getStock = (url, func, sym, interv = 5) => {
       dateEl.text(dateRefreshed);
       lastTradeEl.text("Last Trade Price(USD): $" + parseFloat(lastTradePriceOnly).toFixed(2));
       sharesTradedEl.text("Trade volume (# of trades made): " + lastVolume);
-      //let temp = `${symbol}, ${dateRefreshed}, ${lastTradePriceOnly}, ${lastVolume}`;
     })
 }
 
